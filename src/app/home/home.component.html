@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Inicio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <h1>Bienvenido, {{ username }}</h1>
+  <ion-button expand="full" (click)="generateQRCode()">Generar QR</ion-button>
+  <qrcode [qrdata]="qrCodeData" [width]="255" [errorCorrectionLevel]="'M'">
+  </qrcode>
+</ion-content>
