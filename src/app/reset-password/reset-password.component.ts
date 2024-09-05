@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from '../data.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -10,21 +11,14 @@ export class ResetPasswordComponent {
   password: string = '';
   confirmPassword: string = '';
 
-  constructor() {}
+  constructor(private userService: UserService) {}
+
+  resetPassword(password: string): void {
+    this.userService.password = password;
+  }
 
   onSubmit(): void {
-    // Lógica de cambio de contraseña aquí
-    if (this.username && this.password && this.confirmPassword) {
-      if (this.password === this.confirmPassword) {
-        // Suponiendo cambio de contraseña exitoso
-        alert('Contraseña cambiada exitosamente.');
-      } else {
-        // Manejar errores de contraseña no coincidente
-        alert('Las contraseñas no coinciden.');
-      }
-    } else {
-      // Manejar errores de datos faltantes
-      alert('Por favor, ingresa todos los campos.');
-    }
+    this.userService.password = this.confirmPassword;
+    this.resetPassword(this.password);
   }
 }

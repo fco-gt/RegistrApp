@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from '../data.service';
 
 @Component({
   selector: 'app-home',
@@ -6,14 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  username: string = 'Usuario'; // Puedes reemplazar esto con el valor real
   qrCodeData: string = '';
 
-  constructor() {}
+  constructor(public userService: UserService) {}
 
   generateQRCode(): void {
-    this.qrCodeData = `Datos para QR generados por ${
-      this.username
-    } en ${new Date().toISOString()}`;
+    this.qrCodeData = 'http://localhost:8100/user/' + this.userService.username;
   }
 }

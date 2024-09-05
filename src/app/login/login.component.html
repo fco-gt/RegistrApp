@@ -1,22 +1,91 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Iniciar Sesión</ion-title>
-  </ion-toolbar>
-</ion-header>
+<div
+  class="min-h-screen flex items-center justify-cente py-12 px-4 sm:px-6 lg:px-8"
+>
+  <div class="max-w-md w-full space-y-8">
+    <div [@logoAnimation]="logoState" class="text-center">
+      <h2 class="mt-5 text-3xl font-extrabold text-white">Bienvenido</h2>
+      <p class="mt-2 text-sm text-white/70">Por favor ingresa a tu cuenta</p>
+    </div>
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+      [@formAnimation]="formState"
+      class="mt-9 space-y-5"
+    >
+      <div class="shadow-sm -space-y-px">
+        <div class="mb-2">
+          <label for="email-address" class="sr-only">Correo</label>
+          <input
+            id="email-address"
+            name="email"
+            type="email"
+            formControlName="email"
+            required
+            class="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-white/90 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
+            placeholder="Correo"
+          />
+        </div>
+        <div>
+          <label for="password" class="sr-only">Contraseña</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            formControlName="password"
+            required
+            class="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-white/90 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
+            placeholder="Contraseña"
+          />
+        </div>
+      </div>
 
-<ion-content padding>
-  <form (ngSubmit)="onSubmit()">
-    <ion-item>
-      <ion-label position="floating">Usuario</ion-label>
-      <ion-input [(ngModel)]="username" name="username" required></ion-input>
-    </ion-item>
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <input
+            id="remember-me"
+            name="remember-me"
+            type="checkbox"
+            class="h-4 w-4 text-green-200 focus:ring-green-500 border-gray-200 rounded"
+          />
+          <label for="remember-me" class="ml-2 block text-sm text-green-500">
+            Recuerdame
+          </label>
+        </div>
 
-    <ion-item>
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input [(ngModel)]="password" type="password" name="password" required></ion-input>
-    </ion-item>
+        <div class="text-sm">
+          <a
+            href="#"
+            class="font-medium text-green-700 hover:text-green-500 transition-colors"
+          >
+            Olvidaste tu contraseña?
+          </a>
+        </div>
+      </div>
 
-    <ion-button expand="full" type="submit">Ingresar</ion-button>
-    <ion-button fill="clear" routerLink="/reset-password">Olvidé mi contraseña</ion-button>
-  </form>
-</ion-content>
+      <div>
+        <button
+          type="submit"
+          [disabled]="loginForm.invalid"
+          class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-700 hover:bg-green-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        >
+          <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+            <svg
+              class="h-5 w-5 text-gray-700 group-hover:text-gray-100 transition-colors"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </span>
+          Iniciar Sesión
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
