@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   trigger,
@@ -7,7 +8,7 @@ import {
   animate,
   transition,
 } from '@angular/animations';
-
+import { UserService } from '../data.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -51,10 +52,17 @@ export class LoginComponent implements OnInit {
   formState = 'hidden';
   logoState = 'normal';
 
-  constructor(private fb: FormBuilder) {
+  username: string = '';
+  password: string = '';
+
+  constructor(
+    private fb: FormBuilder,
+    private user: UserService,
+    private router: Router
+  ) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      username: ['', Validators.required],
+      password: ['', Validators.required],
     });
   }
 
@@ -68,7 +76,18 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      console.log('Login submitted', this.loginForm.value);
+      this.username = this.loginForm.value.username;
+      this.password = this.loginForm.value.password;
+
+      this.user.username = this.username;
+      this.user.password = this.password;
+      this.redirectToHomePage();
+
+      this.loginForm.reset();
     }
+  }
+
+  redirectToHomePage() {
+    this.router.navigate(['/home']);
   }
 }
