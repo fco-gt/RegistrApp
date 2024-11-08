@@ -1,0 +1,24 @@
+<ion-content class="not-found-content">
+  <ion-grid class="not-found-grid">
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col size="12" size-md="6" class="not-found-wrapper">
+        <!-- Imagen de error 404 -->
+        <ion-img src="assets/preocupao.jpeg" class="error-image"></ion-img>
+        
+        <!-- Icono de error -->
+        <ion-icon name="alert-circle-outline" class="error-icon"></ion-icon>
+        
+        <h1 class="error-title">Error 404</h1>
+        <p class="error-message">La página que buscas no existe.</p>
+        
+        <!-- Botón para volver al inicio -->
+        <ion-button color="primary" expand="block" (click)="goHome()" shape="round">
+          <ion-icon slot="start" name="home-outline"></ion-icon>
+          Volver al inicio
+        </ion-button>
+
+        <ion-img src="assets/altoahi.jpeg" class="error-image mt-10"></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

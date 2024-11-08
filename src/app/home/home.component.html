@@ -1,20 +1,35 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Inicio</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <section class="flex flex-col justify-center items-center text-center mt-7 mb-5 text-[53px] font-bold">
-    <h2>Bienvenido, {{ userService.username }}</h2>
+  <section class="flex flex-col justify-center items-center text-center mt-28 mb-5 text-[20px] font-bold text-white">
+    <h2>Bienvenido {{ userService.username }}</h2>
   </section>
-  <section class="flex flex-col justify-center items-center gap">
-    <ion-button color="success" size="large" expand="block">
+  <section class="flex flex-col justify-center items-center gap-4 px-5">
+    <ion-button 
+      color="transparent" 
+      class="w-full border bg-fuchsia-500 border-white text-white text-lg rounded-full py-20 transition-transform duration-200 transform hover:scale-105 active:scale-95 shadow-lg shadow-black/30"
+      (click)="irAListaAlumnos()">
       Lista de alumnos
     </ion-button>
-    <ion-button color="success" size="large" expand="block" (click)="generateQRCode()">Generar QR</ion-button>
-    <qrcode [qrdata]="qrCodeData" [width]="255" [errorCorrectionLevel]="'M'">
+    
+    <ion-button 
+      color="transparent" 
+      size="large" 
+      expand="block" 
+      class="w-full border bg-violet-600 border-white text-white text-lg rounded-full py-10 transition-transform duration-200 transform hover:scale-105 active:scale-95 shadow-lg shadow-black/30"
+      (click)="generateQRCode()">
+      Generar QR
+    </ion-button>
+    
+    <qrcode 
+      [qrdata]="qrCodeData" 
+      [width]="255" 
+      [errorCorrectionLevel]="'M'">
     </qrcode>
-  </section>
 
+    <ion-button 
+      color="transparent" 
+      class="w-full border bg-red-600 border-white text-white text-lg rounded-full  transition-transform duration-200 transform hover:scale-105 active:scale-95 shadow-lg shadow-black/30"
+      (click)="logOut()">
+      Cerrar Sesion
+    </ion-button>
+  </section>
 </ion-content>

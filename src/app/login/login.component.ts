@@ -1,14 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-} from '@angular/animations';
-import { UserService } from '../data.service';
+import { trigger, state, style, animate, transition } from '@angular/animations';
+import { UserService } from '../service/data.service';
+import { AuthService } from '../service/auth.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -58,7 +54,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private user: UserService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
@@ -79,15 +76,18 @@ export class LoginComponent implements OnInit {
       this.username = this.loginForm.value.username;
       this.password = this.loginForm.value.password;
 
-      this.user.username = this.username;
-      this.user.password = this.password;
-      this.redirectToHomePage();
+      // Usar el servicio para autenticar al usuario
+      this.user.authenticate(this.username, this.password).subscribe((isAuthenticated: boolean) => {
+        if (isAuthenticated) {
+          this.authService.setLogin(true);
+          this.router.navigate(['/home']);
+        } else {
+          // Si las credenciales son incorrectas, puedes mostrar un mensaje de error
+          alert('Credenciales incorrectas');
+        }
+      });
 
       this.loginForm.reset();
     }
-  }
-
-  redirectToHomePage() {
-    this.router.navigate(['/home']);
   }
 }

@@ -1,0 +1,26 @@
+<ion-header translucent="true">
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Lista de Alumnos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding bg-orange-500">
+  <ion-list lines="inset">
+    <ion-item *ngFor="let alumno of alumnos" class="bg-orange-500">
+      <ion-avatar slot="start">
+        <img src="assets/abejin.png" alt="Alumno Avatar">
+      </ion-avatar>
+      <ion-label>
+        <h2 class="ion-text-uppercase" style="font-weight: bold;">{{ alumno.name }}</h2>
+        <p>Email: {{ alumno.email }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- Botón para volver al menú -->
+  <div class="ion-text-center" style="margin-top: 20px;">
+    <ion-button expand="block" color="secondary" shape="round" (click)="goToHome()">
+      Volver al Menú
+    </ion-button>
+  </div>
+</ion-content>

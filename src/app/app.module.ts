@@ -12,6 +12,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ListaAlumnosComponent } from './lista-alumnos/lista-alumnos.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     HomeComponent,
     LoginComponent,
     ResetPasswordComponent,
+    ListaAlumnosComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +33,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     ReactiveFormsModule,
     BrowserAnimationsModule,
     QRCodeModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
