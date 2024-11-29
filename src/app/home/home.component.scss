@@ -1,5 +1,19 @@
 ion-page {
-    background: rgb(0,5,2);
-    background: linear-gradient(0deg, rgba(0,5,2,1) 0%, rgba(14,64,38,1) 100%);
+    background: rgb(0, 5, 2);
+    background: linear-gradient(0deg, rgba(0, 5, 2, 1) 0%, rgba(14, 64, 38, 1) 100%);
 }
-  
+
+ion-toolbar {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    --background: linear-gradient(to right, #1e5020, #328b37);
+    /* Gradiente verde oscuro */
+    --ion-background-color: transparent;
+    /* Asegura transparencia */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    /* Sombra opcional */
+}
+
+h5 {
+    font-size: 11px;
+}

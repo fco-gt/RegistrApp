@@ -4,7 +4,6 @@ import { LoginComponent } from './login/login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './guard/auth.guard';
-import { ListaAlumnosComponent } from './lista-alumnos/lista-alumnos.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
@@ -12,7 +11,6 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'lista-alumnos', component: ListaAlumnosComponent, canActivate: [AuthGuard] },
   { path: '**', component: NotFoundComponent },
 ];
 

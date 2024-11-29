@@ -12,9 +12,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { ListaAlumnosComponent } from './lista-alumnos/lista-alumnos.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
+import { BarcodeScanner} from '@awesome-cordova-plugins/barcode-scanner/ngx';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,6 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     LoginComponent,
     ResetPasswordComponent,
-    ListaAlumnosComponent,
     NotFoundComponent
   ],
   imports: [
@@ -34,8 +33,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     QRCodeModule,
     HttpClientModule,
+    
   ],
-  providers: [],
+  providers: [BarcodeScanner],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

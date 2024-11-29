@@ -41,11 +41,7 @@
 @tailwind utilities;
 
 ion-app {
-    --ion-background-color: transparent;
-    background: rgb(13, 95, 245);
-    background: linear-gradient(0deg, rgba(13, 95, 245, 1) 0%, rgba(255, 119, 0, 1) 60%);
-    background-attachment: fixed;
-    background-size: cover;
-  }
-  
-  
+  --ion-background-color: transparent;
+  background: #161616;
+}
+

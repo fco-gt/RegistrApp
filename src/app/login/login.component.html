@@ -3,7 +3,7 @@
 >
   <div class="max-w-md w-full space-y-8">
     <div [@logoAnimation]="logoState" class="text-center">
-      <h2 class="mt-5 text-3xl font-extrabold text-white">Bienvenido</h2>
+      <h2 class="mt-5 text-2xl font-extrabold text-white">Bienvenido a RegistrApp</h2>
       <p class="mt-2 text-sm text-white/70">Por favor ingresa a tu cuenta</p>
     </div>
     <form
@@ -14,15 +14,15 @@
     >
       <div class="shadow-sm -space-y-px">
         <div class="mb-2">
-          <label for="username-address" class="sr-only">Usuario</label>
+          <label for="email-address" class="sr-only">Correo</label>
           <input
-            id="username-address"
-            name="username"
-            type="text"
-            formControlName="username"
+            id="email-address"
+            name="email"
+            type="email"
+            formControlName="email"
             required
             class="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-white/90 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
-            placeholder="Usuario"
+            placeholder="Correo"
           />
         </div>
         <div>

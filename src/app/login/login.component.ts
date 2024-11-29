@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import { UserService } from '../service/data.service';
 import { AuthService } from '../service/auth.service';
 
 @Component({
@@ -48,17 +47,16 @@ export class LoginComponent implements OnInit {
   formState = 'hidden';
   logoState = 'normal';
 
-  username: string = '';
+  email: string = '';
   password: string = '';
 
   constructor(
     private fb: FormBuilder,
-    private user: UserService,
     private router: Router,
     private authService: AuthService
   ) {
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
@@ -73,20 +71,38 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      this.username = this.loginForm.value.username;
+      this.email = this.loginForm.value.email;
       this.password = this.loginForm.value.password;
 
-      // Usar el servicio para autenticar al usuario
-      this.user.authenticate(this.username, this.password).subscribe((isAuthenticated: boolean) => {
-        if (isAuthenticated) {
-          this.authService.setLogin(true);
-          this.router.navigate(['/home']);
-        } else {
-          // Si las credenciales son incorrectas, puedes mostrar un mensaje de error
-          alert('Credenciales incorrectas');
-        }
-      });
+      const loginData = { email: this.email, password: this.password };
+      let endpoint = '';
+      let isStudent = false;
 
+      // Verificar si el usuario es un estudiante o un profesor
+      if (this.email.includes('@estudiante.com')) {
+        endpoint = 'students/login';
+        isStudent = true;
+      } else if (this.email.includes('@profesor.com')) {
+        endpoint = 'teachers/login';
+      }
+
+      this.authService.login(endpoint, loginData).subscribe(
+        (response) => {
+    
+          // Guardar datos del usuario en localStorage
+          const user = isStudent ? response.student : response.teacher;
+          user.isStudent = isStudent;
+
+          localStorage.setItem('userData', JSON.stringify(user));
+
+          // Redirigir al usuario
+          this.router.navigate(['/home']);
+        },
+        (error) => {
+          console.error('Error al iniciar sesión:', error);
+        }
+      );
+      
       this.loginForm.reset();
     }
   }
